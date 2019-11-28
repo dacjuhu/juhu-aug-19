@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC  
+          "-//Hibernate/Hibernate Configuration DTD 5.3//EN"  
+          "http://hibernate.sourceforge.net/hibernate-configuration-5.3.dtd">
+
+<hibernate-mapping>
+	<class name="in.cdac.Student" table="STUDENT">
+
+		<id name="id" type="int" column="id">
+			<generator class="native" />
+		</id>
+
+		<property name="name" column="name" type="string" />
+		<property name="mobile" column="mobile" type="string" />
+		<property name="email" column="email" type="string" />
+
+	</class>
+</hibernate-mapping>
