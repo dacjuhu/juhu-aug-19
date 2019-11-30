@@ -17,6 +17,7 @@
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>  
 	      
         <mapping resource="user.hbm.xml"/>  
+        <mapping resource="post.hbm.xml"/>  
 	     
     </session-factory>  
   

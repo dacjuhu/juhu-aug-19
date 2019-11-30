@@ -1,5 +1,16 @@
 <%@ include file="header.jsp" %>
 
+<%
+	String errorMessage = "";
+	if(session.getAttribute("ERROR") != null) {
+		errorMessage = (String) session.getAttribute("ERROR");	
+		
+		session.removeAttribute("ERROR");
+	}
+	
+	
+%>
+
 <body>
 
 	<div class="container-fluid">
@@ -38,7 +49,17 @@
 					</div>
 					
 					<button type="submit" class="btn btn-primary">REGISTER</button>
+					<a class="btn btn-primary" href="login.jsp" role="button">Login</a>
+					
+					<% if(errorMessage != ""){ %>
+						<div class="alert alert-danger mt-1" role="alert">
+  							<%= errorMessage %>
+						</div>	
+					<% } %>
+					
 				</form>
+				
+				
 
 			</div>
 		</div>

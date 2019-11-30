@@ -13,8 +13,8 @@ public class HelloHibernate {
 
 	public static void main(String[] args) {
 
-		// readAll();
-		createRecord();
+		 readAll();
+		// createRecord();
 	}
 	
 	public static void readAll() {
@@ -22,8 +22,8 @@ public class HelloHibernate {
 		Session session = sessionFactory.openSession();
 		
 		// named query :id
-		Query query =  session.createQuery("FROM Student WHERE id=:id");
-		query.setParameter("id", 1);
+		Query query =  session.createQuery("FROM Student ORDER BY id DESC");
+		// query.setParameter("id", 1);
 		
 		List<Student> list = query.getResultList();
 		

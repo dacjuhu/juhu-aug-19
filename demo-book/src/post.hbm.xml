@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC  
+          "-//Hibernate/Hibernate Configuration DTD 5.3//EN"  
+          "http://hibernate.sourceforge.net/hibernate-configuration-5.3.dtd">
+
+<hibernate-mapping>
+	<class name="in.cdac.Post" table="HBM_POST">
+
+		<id name="id" type="int" column="id">
+			<generator class="increment" />
+		</id>
+
+		<property name="post" column="post" type="string" />
+		<property name="likeCount" column="likeCount" type="int" />
+		<property name="dislikeCount" column="dislikeCount" type="int" />
+		<property name="userid" column="userid" type="int" />
+
+	</class>
+</hibernate-mapping>

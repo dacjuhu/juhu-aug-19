@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class RegiserServlet
+ * Servlet implementation class LoginServlet
  */
-@WebServlet("/regiser-servlet")
-public class RegiserServlet extends HttpServlet {
+@WebServlet("/login-servlet")
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
@@ -22,30 +22,28 @@ public class RegiserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		try {
-			// READING INPUT FROM USER
+			
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
-			String email = request.getParameter("email");
-			String mobile = request.getParameter("mobile");
-			
-			// PREPAREING AN INSTANCE OF USER
-			User user = new User();
-			user.setUsername(username);
-			user.setEmail(email);
-			user.setPassword(password);
-			user.setMobile(mobile);
 			
 			
-			// DB CALL
-			// JdbcRegiserService.regiserUser(user);
-			HibernateRegiserService.regiserUser(user);
+			boolean auth = AuthenticationService.validateUserHBM(username, password);
+			if(auth) {
+				session.setAttribute("AUTH", true);
+				
+				request.getRequestDispatcher("/HomeServlet").forward(request, response);
+				
+				// response.sendRedirect("home.jsp");
+			} else {
+				
+				session.setAttribute("ERROR", "Authentication Failed!!!");
+				response.sendRedirect("login.jsp");
+			}
 			
-			response.sendRedirect("login.jsp");
+			
+			
 		} catch(Exception e) {
 			e.printStackTrace();
-			
-			session.setAttribute("ERROR", "USER Already Exists");
-			response.sendRedirect("register.jsp");
 		}
 	}
 
@@ -53,6 +51,7 @@ public class RegiserServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
