@@ -4,39 +4,23 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
-public class HelloSpringJdbcApplication implements CommandLineRunner {
+
+@Component
+public class UserDao {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-
-	public static void main(String[] args) {
-		SpringApplication.run(HelloSpringJdbcApplication.class, args);
-	}
-
-	@Override
-	public void run(String... args) throws Exception {
-		System.out.println("Hello World");
-		
-		// this.createUser();
-		// this.updateUser();
-		// this.deleteUser();
-		
-		// this.readUserVer1();
-		// this.readUserVer2();
-		 this.readSingleUser();
-	}
 	
 	
-	public void createUser() {
+	public boolean createUser() {
 		String sql = "INSERT INTO USER (USERNAME, PASSWORD, EMAIL) VALUES (?, ?, ?)";
-		jdbcTemplate.update(sql, "NEW_USER", "NEW_PASSWORD", "NEW@email.com");
 		
-		System.out.println("USER CREATED");
+		jdbcTemplate.update(sql, "mumbai", "mumbai123", "mumbai@gmail.com");
+		
+		return true;
 	}
 	
 	
@@ -81,6 +65,5 @@ public class HelloSpringJdbcApplication implements CommandLineRunner {
 		
 		System.out.println(user);
 	} 
-	
 
 }
